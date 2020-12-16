@@ -5,6 +5,8 @@ import com.areteans.Savings.Repositories.CustomerRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerService {
     private final JdbcTemplate jdbcTemplate;
@@ -22,6 +24,7 @@ public class CustomerService {
         System.out.println("Record deleted for Customer Id: "+cusid);
     }
     public Customer getDetails(Long cusid){
-        return customerRepository.getOne(cusid);
+        Optional<Customer> get = customerRepository.findById(cusid);
+        return get.orElse(null);
     }
 }

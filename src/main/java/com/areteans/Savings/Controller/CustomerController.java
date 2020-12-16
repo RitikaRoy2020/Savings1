@@ -39,8 +39,9 @@ public class CustomerController {
         return accountService.saveAcc(account);
     }
 
-    @GetMapping(value = "getCustomer/{cusid}")
-    public Customer getCustomer(@PathVariable("cusid") Long cusid){
-        return customerService.getDetails(cusid);
+    @GetMapping(path = "getCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Customer getCustomer(@RequestParam("cusid") Long cusid){
+        return this.customerService.getDetails(cusid);
     }
+
 }
