@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     private final JdbcTemplate jd;
     private final CustomerService customerService;
-    private final AccountService accountService;
 
-    public CustomerController(JdbcTemplate jd, CustomerService customerService, AccountService accountService) {
+    public CustomerController(JdbcTemplate jd, CustomerService customerService) {
         this.jd = jd;
         this.customerService = customerService;
-        this.accountService = accountService;
     }
 
     @PostMapping(path = "insertCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -32,11 +30,6 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable("cusid") Long cusid){
         customerService.delCus(cusid);
         System.out.println("Deleted record of "+cusid);
-    }
-
-    @PostMapping(path = "insertAccount", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Account insertAccount(@RequestBody Account account){
-        return accountService.saveAcc(account);
     }
 
     @GetMapping(path = "getCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
