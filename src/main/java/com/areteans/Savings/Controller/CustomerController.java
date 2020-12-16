@@ -6,10 +6,7 @@ import com.areteans.Savings.Service.AccountService;
 import com.areteans.Savings.Service.CustomerService;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -31,8 +28,19 @@ public class CustomerController {
         return op;
     }
 
+    @DeleteMapping(value = "deleteCustomer/{cusid}")
+    public void deleteCustomer(@PathVariable("cusid") Long cusid){
+        customerService.delCus(cusid);
+        System.out.println("Deleted record of "+cusid);
+    }
+
     @PostMapping(path = "insertAccount", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Account insertAccount(@RequestBody Account account){
         return accountService.saveAcc(account);
+    }
+
+    @GetMapping(value = "getCustomer/{cusid}")
+    public Customer getCustomer(@PathVariable("cusid") Long cusid){
+        return customerService.getDetails(cusid);
     }
 }

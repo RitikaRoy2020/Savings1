@@ -2,6 +2,7 @@ package com.areteans.Savings.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name="customer")
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
     @Id

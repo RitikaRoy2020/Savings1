@@ -17,4 +17,11 @@ public class CustomerService {
     public Customer saveCus(Customer customer){
         return customerRepository.save(customer);
     }
+    public void delCus(Long cusid){
+        customerRepository.deleteById(cusid);
+        System.out.println("Record deleted for Customer Id: "+cusid);
+    }
+    public Customer getDetails(Long cusid){
+        return customerRepository.getOne(cusid);
+    }
 }
